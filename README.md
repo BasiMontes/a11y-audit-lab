@@ -19,7 +19,7 @@ npm run medir
 
 `npm run medir` ejecuta la prueba 3 veces y clasifica los avisos. La salida queda en `resultados/ejecucion.log` y `resultados/clasificacion.json`.
 
-Versiones con las que se midió (MacBook Air): Playwright 1.64.1, @axe-core/playwright 4.14.0.
+Versiones con las que se midió (MacBook Air): Node 22.18.0, Playwright 1.64.1, @axe-core/playwright 4.14.0.
 
 ## Qué mide y qué no
 
