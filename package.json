@@ -1,0 +1,14 @@
+{
+  "name": "a11y-audit-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Auditoría de accesibilidad con axe sobre una página propia con fallos sembrados",
+  "scripts": {
+    "medir": "mkdir -p resultados && rm -f resultados/ejecucion-*.json && playwright test --repeat-each=3 | tee resultados/ejecucion.log && node tools/clasificar.js",
+    "clasificar": "node tools/clasificar.js"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.49.0"
+  }
+}
