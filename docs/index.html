@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>a11y-audit-lab · resultados</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px; line-height: 1.5; color: #1a1a1a; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; }
+    th { background: #f2f2f2; }
+    .nota { color: #555; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <h1>Auditoría de accesibilidad con axe</h1>
+  <p>Laboratorio de accesibilidad (proyecto 5a): axe sobre una página propia con fallos sembrados a propósito. Criterios WCAG 2.2 AA.</p>
+  <p>
+    <a href="practica/">Ver la página de práctica</a> ·
+    <a href="https://github.com/BasiMontes/a11y-audit-lab" rel="noopener">Ver el repositorio</a> ·
+    <a href="https://github.com/BasiMontes/a11y-audit-lab/blob/main/docs/fallos-sembrados.md" rel="noopener">Lista de fallos y predicciones</a>
+  </p>
+
+  <h2>Resultados</h2>
+  <p>Medición del 5/11/2026 en un MacBook Air, con <code>npm run medir</code>. Node 22.18.0, Playwright 1.64.1, @axe-core/playwright 4.14.0. Tres repeticiones; las tres dan lo mismo porque axe es determinista.</p>
+  <table>
+    <thead><tr><th>Fallo</th><th>Criterio</th><th>Predicción</th><th>Resultado</th></tr></thead>
+    <tbody>
+      <tr><td>F1 contraste</td><td>1.4.3</td><td>detectar</td><td>detectado</td></tr>
+      <tr><td>F2 imagen sin alt</td><td>1.1.1</td><td>detectar</td><td>detectado</td></tr>
+      <tr><td>F3 botón sin nombre</td><td>4.1.2</td><td>detectar</td><td>detectado</td></tr>
+      <tr><td>F4 buscador sin etiqueta</td><td>1.3.1 / 4.1.2</td><td>detectar</td><td><strong>no detectado</strong></td></tr>
+      <tr><td>F5 encabezados</td><td>1.3.1</td><td>detectar</td><td>detectado</td></tr>
+      <tr><td>F6 foco invisible</td><td>2.4.7</td><td>no detectar</td><td>no detectado</td></tr>
+      <tr><td>F7 tabindex positivo</td><td>2.4.3</td><td>detectar</td><td>detectado</td></tr>
+      <tr><td>F8 enlace "aquí"</td><td>2.4.4</td><td>no detectar</td><td>no detectado</td></tr>
+      <tr><td>F9 lang ausente</td><td>3.1.1</td><td>detectar</td><td>detectado</td></tr>
+      <tr><td>F10 error solo por color</td><td>1.4.1</td><td>no detectar</td><td>no detectado</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Resumen:</strong> 6 de 7 fallos detectables detectados (la predicción era 7). Ningún falso positivo en la sección de control. Los 3 fallos que axe no puede detectar se cuentan como brecha de revisión manual.</p>
+
+  <h2>Hallazgos no sembrados</h2>
+  <ul>
+    <li><strong>F4:</strong> el buscador tiene <code>placeholder</code>, y axe lo acepta como nombre accesible. Un placeholder no sustituye a una etiqueta, así que el fallo sigue existiendo.</li>
+    <li><strong>H1:</strong> el campo de correo de contacto no tiene etiqueta.</li>
+    <li><strong>target-size:</strong> el enlace "Catálogo" del menú es demasiado pequeño (2.5.8 de WCAG 2.2). No estaba previsto.</li>
+  </ul>
+
+  <h2>Qué no mide esta prueba</h2>
+  <p class="nota">axe no cubre todo WCAG: foco, orden de lectura y sentido de los textos exigen revisión manual. Una página, un navegador y una máquina. La prueba registra avisos y no hace aserciones; "passed" no significa que la página cumpla.</p>
+</body>
+</html>
