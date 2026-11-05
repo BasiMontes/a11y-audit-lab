@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- Página de práctica para el proyecto 5a. Fallos sembrados a propósito: ver docs/fallos-sembrados.md -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tienda de práctica · accesibilidad</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #ffffff; }
+    header, main, footer { padding: 16px 24px; }
+    nav a { margin-right: 16px; color: #1a5fb4; }
+    .texto-secundario { color: #9a9a9a; } /* F1: contraste bajo sobre blanco */
+    .tarjetas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .tarjeta { border: 1px solid #ccc; padding: 12px; width: 200px; }
+    .tarjeta img { width: 180px; height: 120px; background: #dfe8f1; }
+    .btn { background: #1a5fb4; color: #fff; border: 0; padding: 8px 12px; cursor: pointer; }
+    .btn-foco:focus { outline: none; } /* F6: sin indicador de foco */
+    .error-campo { border: 2px solid #c01c28; } /* F10: el error solo se indica por color */
+    .control .btn { background: #0b4d9c; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#control">Control</a>
+    </nav>
+    <!-- F3: botón solo con icono, sin nombre accesible -->
+    <button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="#fff"/></svg></button>
+  </header>
+
+  <!-- F9: el elemento html no tiene atributo lang -->
+
+  <main>
+    <!-- F5: el encabezado salta de h1 a h4 -->
+    <h1>Tienda de práctica</h1>
+    <h4>Buscar productos</h4>
+
+    <!-- F4: campo de búsqueda sin etiqueta -->
+    <input type="search" name="q" placeholder="Buscar">
+    <button class="btn btn-foco" type="button">Buscar</button>
+
+    <section id="catalogo">
+      <h2>Catálogo</h2>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <!-- F2: imagen sin texto alternativo -->
+          <img src="foto-zapatilla.png">
+          <p>Zapatilla running</p>
+          <!-- F1: texto secundario con contraste insuficiente -->
+          <p class="texto-secundario">Envío en 24 h</p>
+          <!-- F7: tabindex positivo que altera el orden de tabulación -->
+          <button class="btn" type="button" tabindex="3">Añadir</button>
+        </article>
+        <article class="tarjeta">
+          <img src="foto-mochila.png" alt="Mochila azul">
+          <p>Mochila urbana</p>
+          <p class="texto-secundario">Stock limitado</p>
+          <button class="btn" type="button" tabindex="1">Añadir</button>
+        </article>
+      </div>
+      <!-- F8: enlace con texto genérico -->
+      <p>Más información <a href="/ofertas">aquí</a>.</p>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <form>
+        <!-- F4 también aplica a un campo de formulario con etiqueta ausente -->
+        <input type="text" name="nombre" placeholder="Nombre">
+        <!-- F10: el campo con error se marca solo con el borde rojo, sin texto -->
+        <input type="email" name="correo" class="error-campo" value="correo-sin-arroba">
+        <button class="btn" type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <section id="control" class="control">
+      <!-- Sección de control: marcado correcto. Ningún aviso debería salir aquí. -->
+      <h2>Control</h2>
+      <p>Este párrafo tiene buen contraste.</p>
+      <img src="foto-control.png" alt="Logotipo de la tienda de práctica">
+      <form>
+        <label for="c-nombre">Nombre</label>
+        <input type="text" id="c-nombre" name="c-nombre">
+        <button class="btn" type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p class="texto-secundario">Página de práctica para auditoría de accesibilidad.</p>
+  </footer>
+
+</body>
+</html>
