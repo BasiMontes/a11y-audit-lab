@@ -46,6 +46,8 @@ Predicción original: 7 de 10 detectados. **Resultado: 6 de 7 detectables.**
 
 **Predicción fallida (F4)**: el buscador tiene `placeholder="Buscar"`. Axe acepta el placeholder como nombre accesible y por eso no da aviso de `label`. Esto es una deducción a partir de la regla y del resultado, no una comprobación directa. Un placeholder no sustituye a una etiqueta para WCAG 1.3.1, así que el fallo sigue ahí: es una brecha de la herramienta, no un acierto.
 
+**Corrección (6/11/2026)**: la predicción original de F4 cita WCAG 1.3.1 / 4.1.2. Tras revisar el W3C, el criterio que mejor encaja es **3.3.2 (Etiquetas o instrucciones)**: el campo no tiene etiqueta visible y el placeholder desaparece al escribir. Se mantiene la tabla original sin cambios; esta nota es la corrección. Interpretación nuestra: el texto del criterio no define el placeholder como etiqueta. La medición no cambia: axe no lo detecta.
+
 **Hallazgos nuevos (no sembrados)**:
 - H1: el campo de correo (`.error-campo`) sin etiqueta. Tampoco da aviso porque el campo "Nombre" tiene placeholder; el de correo no tiene, así que sí sale.
 - `target-size` en el enlace "Catálogo" del menú (criterio 2.5.8 de WCAG 2.2). No lo sembré: es un problema real de la página que no estaba previsto.
